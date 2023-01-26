@@ -1,1 +1,1 @@
-const inquirer = equire('inquirer');
+const inquirer = require('inquirer');
