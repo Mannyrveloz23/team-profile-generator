@@ -5,6 +5,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const generateHTML = require('./src/htmlgenerator');
 const path = require('path');
+const htmlgenerator = require('./src/htmlgenerator');
 const OUTPUT_DIR = path.resolve(__dirname, "dist");
 const outputPath = path.join(OUTPUT_DIR, "index.html");
 const team = []
@@ -34,7 +35,7 @@ return inquirer.prompt([
     
 ]).then(answers => {
     const manager = new Manager(
-        answers.name, answers.input, answers.email, answers.officeNumber
+        answers.name, answers.id, answers.email, answers.officeNumber
     )
     team.push(manager);
     addEmployee();
@@ -127,7 +128,7 @@ const genTeam = () => {
     if (!fs.existsSync(OUTPUT_DIR)) {
         fs.mkdirSync(OUTPUT_DIR)
     }
-    fs.writeFileSync(outputPath, generateHTML(team), "utf-8");
+    fs.writeFileSync(outputPath, htmlgenerator(team), "utf-8");
 }
 
 promptManager();

@@ -1,9 +1,9 @@
 
 const genTeamProf = (team) => {
-
+const html = [];
 
     const genManager = (manager) => {
-        return `
+        let managerCard = `
         <div class="card employee-card">
         <div class="card-header bg-primary text-white">
             <h2 class="card-title">${manager.getName()}</h2>
@@ -13,16 +13,17 @@ const genTeamProf = (team) => {
             <ul class="list-group">
                 <li class="list-group-item">ID: ${manager.getId()}</li>
                 <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-                <li class="list-group-item">Office number: ${manager.getOfficeNumber()}</li>
+                <li class="list-group-item">Office number: ${manager.getofficeNumber()}</li>
             </ul>
         </div>
         </div>
             `;
+            html.push(managerCard);
         
     };
 
     const genEngineer = (engineer) => {
-        return `
+        let engineerCard = `
         
     <div class="card employee-card">
             <div class="card-header bg-primary text-white">
@@ -37,11 +38,12 @@ const genTeamProf = (team) => {
             </ul>
         </div>
     </div>`;
+    html.push(engineerCard);
 
     };
 
     const genIntern = (intern) => {
-        return `
+        let internCard = `
     <div class="card employee-card">
         <div class="card-header bg-primary text-white">
             <h2 class="card-title">${intern.getName()}</h2>
@@ -57,25 +59,23 @@ const genTeamProf = (team) => {
         </div>
     </div>
         `;
+        html.push(internCard);
 
     };
-    const generateHTML = (employee) => {
-        switch (employee.getRole()) {
-          case "Manager":
-            return genManager(employee);
-          case "Engineer":
-            return genEngineer(employee);
-          case "Intern":
-            return genIntern(employee);
-          default:
-            return "";
+
+    for (let i = 0; i < team.length; i++) {
+        if (team[i].getRole() === "Manager") {
+           genManager(team[i]); 
         }
-      };
+        if (team[i].getRole() === "Engineer") {
+            genEngineer(team[i]); 
+         }
+         if (team[i].getRole() === "Intern") {
+            genIntern(team[i]); 
+         }
+    }
       
-      const html = [];
-      for (const employee of team) {
-        html.push(generateHTML(employee));
-      };
+     return html.join("")
       
 
 };
