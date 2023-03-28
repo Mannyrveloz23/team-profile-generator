@@ -26,6 +26,11 @@
   ## Usage
   This application can be run on the command line by writing "node index" and create a html. creating a team with manager, engineer and intern
 
+  ## Demo
+
+  ![Team Profile Generator Demo](Assets/demo.gif)
+  
+
   ## Test
   By running the application
 
